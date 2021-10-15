@@ -8,7 +8,7 @@ const keuzes = document.querySelectorAll('img');
 keuzes.forEach(function(keuze) {
     keuze.addEventListener('click', function(e) {
         //myChoice
-        const myChoice = e.target.className;
+        const myChoice = e.target.dataset.keuze;
         //pcChoice
         const pcChoice = choices[Math.floor((Math.random()*3))];
         document.getElementById('afbeelding').src = `${pcChoice}.png`;
