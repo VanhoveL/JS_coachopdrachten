@@ -12,13 +12,15 @@
     <div id="nietGevonden" hidden class="fout"> Waarschuwing: Niet gevonden.</div>
     <div>
         <label>Schip:
-            <select id="boot" required autofocus>
+            <span id="bootFout" hidden class="fout"> Verplicht in te vullen. </span>
+            <select id="boot" required autofocus>         
                 <option value="">Maak een keuze</option>
             </select>
         </label>
     </div>
     <div>
         <label>Rij:
+            <span id="rijFout" hidden class="fout"> Verplicht in te vullen. </span>
             <select id="rij" required>
                 <option value="">Maak een keuze</option>
             </select>
@@ -26,6 +28,7 @@
     </div>
     <div>
         <label>Kolom:
+            <span id="kolomFout" hidden class="fout">Verplicht in te vullen.  </span>
             <select id="kolom" required>
                 <option value="">Maak een keuze</option>
             </select>
@@ -33,6 +36,7 @@
     </div>
     <div>
         <label>Richting:
+            <span id="richtingFout" hidden class="fout">Verplicht in te vullen.  </span>
             <select id="richting" required>
                 <option value="">Maak een keuze</option>
                 <option>horizontaal</option>
