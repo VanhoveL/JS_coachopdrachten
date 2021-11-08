@@ -6,9 +6,6 @@ async function leesBestand() {
     if (response.ok) {
         const personen = await response.json(); 
         maakTabel(personen);
-        //displayVrouwen(personen);
-        //displayMannen(personen);
-        //displayAllen(personen);
 
     } else {
         document.getElementById("nietGevonden").hidden = false;
@@ -47,22 +44,15 @@ document.querySelectorAll('a').forEach(a => {
         console.log(sexe);
         let table = document.querySelectorAll('tbody tr');
         for (const tr of table) {
-            console.log(tr); //hoe moet ik de img naam hieruit krijgen?
-            let x = document.getElementsByTagName('img').getAttribute('src');
-            console.log(x);
             // BETER GESLACHT OPNEMEN ALS CLASS...?
-            
-
+            let imgname = img.getAttribute("src"); //hoe kan ik de img scr (bv man3.jpg) uit de tr halen?
+            if (! imgname.includes(sexe)) { 
+                tr.hidden = true; //nog toevoegen in html waarschijnlijk
+            } 
         }
     });
 });
 
-//als geslacht niet overeenkomt (false is) -> hide
-/*
-if (! string.includes(sexe)) { 
-
-} 
-*/
 
 
 
