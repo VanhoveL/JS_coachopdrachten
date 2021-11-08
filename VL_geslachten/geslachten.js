@@ -33,7 +33,10 @@ function maakTabel(personen) {
         fotoTd.setAttribute('id', persoon.foto)
         add_img(persoon.foto, persoon.foto);  
 
-    } return personen;
+        //geslacht om straks te sorteren
+        tr.dataset.geslacht = persoon.geslacht;
+
+    }
 }
 
 
@@ -41,20 +44,21 @@ function maakTabel(personen) {
 document.querySelectorAll('a').forEach(a => {
     a.addEventListener('click', () => {
         let sexe = a.dataset.geslacht;
-        console.log(sexe);
         let table = document.querySelectorAll('tbody tr');
         for (const tr of table) {
-            // BETER GESLACHT OPNEMEN ALS CLASS...?
-            let imgname = img.getAttribute("src"); //hoe kan ik de img scr (bv man3.jpg) uit de tr halen?
-            if (! imgname.includes(sexe)) { 
-                tr.hidden = true; //nog toevoegen in html waarschijnlijk
-            } 
+            if (sexe == "allen") {
+                tr.hidden = false;
+            } else {
+                if (tr.dataset.geslacht == sexe) {
+                    tr.hidden = false;
+                } else {
+                    tr.hidden = true;
+                }
+            }
+
         }
     });
 });
-
-
-
 
 
 
@@ -62,53 +66,5 @@ function add_img(fotoNaam, idCell) {
     let img = document.createElement('img'); 
     img.src = `./images/${fotoNaam}`;
     document.getElementById(`${idCell}`).appendChild(img);
-}
-
-
-
-
-
-//function displayVrouwen(personen) {
-    document.getElementById('vrouwen').onclick = function() {
-        let vrouwen = [];
-        for (const persoon of personen) {
-            if(persoon.geslacht == 'vrouw'){
-                vrouwen.push(persoon);
-                
-            }
-        }
-        while (document.getElementById('tbody').lastChild !== null) {
-            document.getElementById('tbody').lastChild.remove();
-        }
-        maakTabel(vrouwen);
-    }
-//}
-
-function displayMannen(personen) {
-    document.getElementById('mannen').onclick = function() {
-        let mannen = [];
-        for (const persoon of personen) {
-            if(persoon.geslacht == 'man'){
-                mannen.push(persoon);
-            }
-        }
-        while (document.getElementById('tbody').lastChild !== null) {
-            document.getElementById('tbody').lastChild.remove();
-        }
-           
-        maakTabel(mannen);
-    }
-}
-
-
-function displayAllen(personen) {
-    document.getElementById('allen').onclick = function () {
-        while (document.getElementById('tbody').lastChild !== null) {
-            document.getElementById('tbody').lastChild.remove();
-        }
-
-        maakTabel(personen);
-    }
-
 }
 
