@@ -1,0 +1,32 @@
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="geslachten.js" defer></script>
+    <link rel="stylesheet" href="default.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geslachten</title>
+</head>
+<body>
+    <h1>Geslachten</h1>
+    <div id="keuzemenu">
+        <a data-geslacht="man" id='mannen' href="#">Mannen</a>
+        <a data-geslacht="vrouw" id='vrouwen' href="#">Vrouwen</a>
+        <a data-geslacht="allen" id='allen' href="#">Allen</a>
+    </div>
+
+    <div id="nietGevonden" hidden class="fout">Niet gevonden.</div>
+    <table>
+        <thead>
+            <tr>
+                <th>Voornaam</th>
+                <th>Familienaam</th>
+                <th>Geslacht</th>
+                <th>Foto</th>
+            </tr>
+        </thead>
+        <tbody id='tbody'>
+        </tbody>
+    </table>
+</body>
+</html>
