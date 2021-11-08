@@ -44,11 +44,17 @@ function maakTabel(personen) {
     }
 }
 
+function toonAantalPersonen(teller) {
+    console.log(teller);
+    document.getElementById('tfooter').innerHTML = `Aantal personen: ${teller} `;
+};
+
+
 function add_img(fotoNaam, idCell) { 
     let img = document.createElement('img'); 
     img.src = `./images/${fotoNaam}`;
     document.getElementById(`${idCell}`).appendChild(img);
-}
+};
 
 
 
@@ -57,18 +63,23 @@ document.querySelectorAll('a').forEach(a => {
     a.addEventListener('click', () => {
         let sexe = a.dataset.geslacht;
         let table = document.querySelectorAll('tbody tr');
+        let teller = 0;
         for (const tr of table) {
+            
             if (sexe == "allen") {
                 tr.hidden = false;
+                teller++;
             } else {
                 if (tr.dataset.geslacht == sexe) {
                     tr.hidden = false;
+                    teller++;
                 } else {
                     tr.hidden = true;
                 }
             }
 
-        }
+        } 
+        toonAantalPersonen(teller);
     });
 });
 
