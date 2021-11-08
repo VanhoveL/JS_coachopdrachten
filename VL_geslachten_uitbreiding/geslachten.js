@@ -33,11 +33,23 @@ function maakTabel(personen) {
         fotoTd.setAttribute('id', persoon.foto)
         add_img(persoon.foto, persoon.foto);  
 
+        //Verwijder 'vuilbakje'
+        const verwijderTd = tr.insertCell();
+        verwijderTd.setAttribute('id', 'verwijder');
+        verwijderTd.innerHTML="<img src='./images/verwijder.png' alt='verwijder'/>";
+
         //geslacht om straks te sorteren
         tr.dataset.geslacht = persoon.geslacht;
 
     }
 }
+
+function add_img(fotoNaam, idCell) { 
+    let img = document.createElement('img'); 
+    img.src = `./images/${fotoNaam}`;
+    document.getElementById(`${idCell}`).appendChild(img);
+}
+
 
 
 
@@ -61,10 +73,4 @@ document.querySelectorAll('a').forEach(a => {
 });
 
 
-
-function add_img(fotoNaam, idCell) { 
-    let img = document.createElement('img'); 
-    img.src = `./images/${fotoNaam}`;
-    document.getElementById(`${idCell}`).appendChild(img);
-}
 

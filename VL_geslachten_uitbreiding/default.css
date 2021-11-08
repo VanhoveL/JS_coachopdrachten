@@ -1,3 +1,7 @@
+#verwijder img[src="./images/verwijder.png"] {
+    width: 5%;
+}
+
 body {
     font-family: Arial;
 }
