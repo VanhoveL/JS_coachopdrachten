@@ -1,14 +1,14 @@
 [
     {
         "tekst": "Man",
-        "geslacht": "vrouw"
-    },
-    {
-        "tekst": "Vrouw",
         "geslacht": "man"
     },
     {
+        "tekst": "Vrouw",
+        "geslacht": "vrouw"
+    },
+    {
         "tekst": "Allen",
-        "geslacht": ""
+        "geslacht": "allen"
     }
 ]
