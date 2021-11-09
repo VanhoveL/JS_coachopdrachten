@@ -36,12 +36,12 @@ function maakKeuzeMenu(opties) {
 }
 
 //dropdown keuzemenu
-const selectElement = document.querySelector('#keuze');
-selectElement.addEventListener('change', () => {
+const filter = document.querySelector('#filter');
+filter.addEventListener('click', () => {
+    const selectElement = document.querySelector('#keuze');
     let sexe = selectElement.value;
-    console.log(selectElement.value);
-    //let sexe = `${event.target.value}`.toLowerCase; 
-    console.log(typeof sexe === 'string');
+    document.getElementById("geenGeslacht").hidden = true;
+
     let table = document.querySelectorAll('tbody tr');
     let teller = 0;
     for (const tr of table) {
@@ -49,7 +49,8 @@ selectElement.addEventListener('change', () => {
         if (sexe == "allen") {
             tr.hidden = false;
             teller++;
-            console.log('sexe is allen')
+        } else if (sexe =="") {
+            document.getElementById("geenGeslacht").hidden = false;
         } else {
             if (tr.dataset.geslacht == sexe) {
                 tr.hidden = false;
@@ -62,6 +63,14 @@ selectElement.addEventListener('change', () => {
     } 
     toonAantalPersonen(teller);
 });
+
+
+//verwijder persoon
+function verwijderPersoon(img) {
+    const verwijderTd = img.parentNode;
+    const rij = verwijderTd.parentNode; //kan ik direct de juiste parentnode selecteren zonder tussenstap ook?
+    tbody.removeChild(rij);
+}
 
 
 
@@ -89,12 +98,11 @@ function maakTabel(personen) {
         //Verwijder 'vuilbakje'
         const verwijderTd = tr.insertCell();
         verwijderTd.setAttribute('id', 'verwijder');
-        verwijderTd.innerHTML="<img src='./images/verwijder.png' alt='verwijder'/>";
-        //VUILBAKJE NOG IN EEN HYPERLINK STEKEN + HIER DE VERWIJZING NAAR DE FUNCTIE MET ONCLICK OM TE VERWIJDEREN
+        verwijderTd.innerHTML="<img id='vuilbak' src='./images/verwijder.png' alt='verwijder' onclick='verwijderPersoon(this)' />";
 
         //geslacht om straks te sorteren
         tr.dataset.geslacht = persoon.geslacht;
-
+    
     }
 }
 
