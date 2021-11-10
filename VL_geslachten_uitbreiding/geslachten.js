@@ -35,13 +35,18 @@ function maakKeuzeMenu(opties) {
     }
 }
 
-//dropdown keuzemenu
+
 const filter = document.querySelector('#filter');
 filter.addEventListener('click', () => {
+    toonAantalPersonenMetGeslacht();
+    toonAantalPersonen();
+});
+
+
+function toonAantalPersonenMetGeslacht(){
     const selectElement = document.querySelector('#keuze');
     let sexe = selectElement.value;
     document.getElementById("geenGeslacht").hidden = true;
-
     let table = document.querySelectorAll('tbody tr');
     for (const tr of table) {
         if (sexe == "allen") {
@@ -57,10 +62,7 @@ filter.addEventListener('click', () => {
         }
 
     } 
-    toonAantalPersonen();
-});
-
-
+}
 
 
 function maakTabel(personen) {
