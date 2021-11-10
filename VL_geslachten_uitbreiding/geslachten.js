@@ -65,14 +65,6 @@ filter.addEventListener('click', () => {
 });
 
 
-//verwijder persoon
-function verwijderPersoon(img) {
-    const verwijderTd = img.parentNode;
-    const rij = verwijderTd.parentNode; //kan ik direct de juiste parentnode selecteren zonder tussenstap ook?
-    tbody.removeChild(rij);
-}
-
-
 
 
 function maakTabel(personen) {
@@ -98,13 +90,18 @@ function maakTabel(personen) {
         //Verwijder 'vuilbakje'
         const verwijderTd = tr.insertCell();
         verwijderTd.setAttribute('id', 'verwijder');
-        verwijderTd.innerHTML="<img id='vuilbak' src='./images/verwijder.png' alt='verwijder' onclick='verwijderPersoon(this)' />";
+        verwijderTd.innerHTML="<img id='vuilbak' src='./images/verwijder.png' alt='verwijder'/>";
+        verwijderTd.addEventListener('click', () => {
+            tr.remove();
+        })
 
         //geslacht om straks te sorteren
         tr.dataset.geslacht = persoon.geslacht;
     
     }
 }
+
+
 
 function toonAantalPersonen(teller) {
     console.log(teller);
