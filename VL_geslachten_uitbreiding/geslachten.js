@@ -43,25 +43,21 @@ filter.addEventListener('click', () => {
     document.getElementById("geenGeslacht").hidden = true;
 
     let table = document.querySelectorAll('tbody tr');
-    let teller = 0;
     for (const tr of table) {
-        
         if (sexe == "allen") {
             tr.hidden = false;
-            teller++;
         } else if (sexe =="") {
             document.getElementById("geenGeslacht").hidden = false;
         } else {
             if (tr.dataset.geslacht == sexe) {
                 tr.hidden = false;
-                teller++;
             } else {
                 tr.hidden = true;
             }
         }
 
     } 
-    toonAantalPersonen(teller);
+    toonAantalPersonen();
 });
 
 
@@ -93,18 +89,25 @@ function maakTabel(personen) {
         verwijderTd.innerHTML="<img id='vuilbak' src='./images/verwijder.png' alt='verwijder'/>";
         verwijderTd.addEventListener('click', () => {
             tr.remove();
+            toonAantalPersonen();
         })
 
         //geslacht om straks te sorteren
         tr.dataset.geslacht = persoon.geslacht;
     
-    }
+    } toonAantalPersonen();
 }
 
 
 
-function toonAantalPersonen(teller) {
-    console.log(teller);
+function toonAantalPersonen() {
+    let teller = 0;
+    let tbody = document.getElementById('tbody');
+    for (var i = 0, row; row = tbody.rows[i]; i++) {
+        if(! row.hidden){
+            teller++;
+        }
+    }
     document.getElementById('tfooter').innerHTML = `Aantal personen: ${teller} `;
 };
 
