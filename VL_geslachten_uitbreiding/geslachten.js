@@ -43,25 +43,26 @@ filter.addEventListener('click', () => {
 });
 
 
-function toonAantalPersonenMetGeslacht(){
+function toonAantalPersonenMetGeslacht() {
     const selectElement = document.querySelector('#keuze');
-    let sexe = selectElement.value;
-    document.getElementById("geenGeslacht").hidden = true;
-    let table = document.querySelectorAll('tbody tr');
-    for (const tr of table) {
-        if (sexe == "allen") {
-            tr.hidden = false;
-        } else if (sexe =="") {
-            document.getElementById("geenGeslacht").hidden = false;
-        } else {
-            if (tr.dataset.geslacht == sexe) {
+    if (!selectElement.checkValidity()) {
+        document.getElementById("geenGeslacht").hidden = false;
+    } else {
+        document.getElementById("geenGeslacht").hidden = true;
+        let sexe = selectElement.value;
+        let table = document.querySelectorAll('tbody tr');
+        for (const tr of table) {
+            if (sexe == "allen") {
                 tr.hidden = false;
             } else {
-                tr.hidden = true;
+                if (tr.dataset.geslacht == sexe) {
+                    tr.hidden = false;
+                } else {
+                    tr.hidden = true;
+                }
             }
         }
-
-    } 
+    }
 }
 
 
