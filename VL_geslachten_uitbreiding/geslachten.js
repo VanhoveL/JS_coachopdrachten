@@ -102,9 +102,9 @@ function maakTabel(personen) {
 
 function toonAantalPersonen() {
     let teller = 0;
-    let tbody = document.getElementById('tbody');
-    for (var i = 0, row; row = tbody.rows[i]; i++) {
-        if(! row.hidden){
+    let table = document.querySelectorAll('tbody tr');
+    for (const tr of table) {
+        if(! tr.hidden){
             teller++;
         }
     }
