@@ -22,7 +22,7 @@ function maakKeuzeMenu(groenten) {
     }
 }
 
-function valideerInput(groenten){
+function valideerInput(){
     document.getElementById("toevoegen").onclick = function () {
         const verkeerdeElementen =
             document.querySelectorAll("select:invalid,input:invalid");
@@ -56,13 +56,14 @@ function toeTeVoegenItem(keuzeInput, aantalInput) {
     const tbody = document.querySelector("tbody");
     let rijGevonden = false;
     for (var row of tbody.rows) {
-        let groenteNaam = row.querySelector("#winkelmandGroente").innerHTML;
-        if (groenteNaam == keuzeInput.substring(0, keuzeInput.indexOf("("))) {
+        let winkelMandGroente = row.querySelector("#winkelmandGroente").innerHTML;
+        let nieuweGroente = keuzeInput.substring(0, keuzeInput.indexOf("("));
+        if (winkelMandGroente == nieuweGroente) {
             rijGevonden = true;
-            let nieuwAantal = parseInt(row.querySelector("#gekozenAantal").innerHTML) + parseInt(aantalInput);
-            row.querySelector("#gekozenAantal").innerHTML = nieuwAantal;
-            let prijs = row.querySelector("#prijs").innerHTML;
-            row.querySelector("#teBetalen").innerHTML = (nieuwAantal*prijs).toFixed(2);
+            let nieuwAantal = parseInt(row.querySelector("#winkelmandAantal").innerHTML) + parseInt(aantalInput);
+            row.querySelector("#winkelmandAantal").innerHTML = nieuwAantal;
+            let verkoopPrijs = row.querySelector("#aankoopPrijs").innerHTML;
+            row.querySelector("#teBetalen").innerHTML = (nieuwAantal*verkoopPrijs).toFixed(2);
         }
     }
     if (!rijGevonden) {
@@ -75,31 +76,26 @@ function toeTeVoegenItem(keuzeInput, aantalInput) {
 function voegrijtoe(keuzeInput, aantalInput) {
     const tbody = document.querySelector("tbody");
     const tr = tbody.insertRow();
-
     //groente
     const gekozenGroenteTd = tr.insertCell();
     gekozenGroenteTd.setAttribute('id', 'winkelmandGroente');
     gekozenGroenteTd.innerText = keuzeInput.substring(0, keuzeInput.indexOf("("));
-
     //aantal
     const gekozenAantalTd = tr.insertCell();
-    gekozenAantalTd.setAttribute('id', 'gekozenAantal');
+    gekozenAantalTd.setAttribute('id', 'winkelmandAantal');
     gekozenAantalTd.innerText = aantalInput;
-
     //prijs
     let prijs = keuzeInput.substring(
         keuzeInput.indexOf("(") + 1,
         keuzeInput.lastIndexOf("/")
     );
     const prijsTd = tr.insertCell();
-    prijsTd.setAttribute('id', 'prijs');
+    prijsTd.setAttribute('id', 'aankoopPrijs');
     prijsTd.innerText = prijs;
-
     //te betalen
     const teBetalenTd = tr.insertCell();
     teBetalenTd.setAttribute('id', 'teBetalen');
     teBetalenTd.innerText = (prijs * gekozenAantalTd.innerText).toFixed(2);
-
     //vuilbakje
     const verwijderTd = tr.insertCell();
     verwijderTd.setAttribute('id', 'verwijder');
