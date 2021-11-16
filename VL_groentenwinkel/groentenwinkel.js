@@ -40,7 +40,7 @@ function valideerInput(groenten){
             document.getElementById("toegevoegd").hidden = false;
             let keuzeInput = document.getElementById("keuze").value;
             let aantalInput = document.getElementById("aantal").value;
-            voegToeAanMandje(keuzeInput, aantalInput);
+            toeTeVoegenItem(keuzeInput, aantalInput);
         }
     };
 
@@ -48,13 +48,33 @@ function valideerInput(groenten){
 
 
 
-
-function voegToeAanMandje(keuzeInput, aantalInput) {
+function toeTeVoegenItem(keuzeInput, aantalInput) {
+    // laten staan!!
     const tbody = document.querySelector("tbody");
+    
+    
+    //CHECK DUBBELS
+    /*
+    for (var i = 0; i < (tbody.rows.length); i++) {
+        let winkelmandGroente = document.getElementById("winkelmandGroente").innerHTML;
+        if (winkelmandGroente == keuzeInput.split(" ")[0]) {
+            console.log('dubbel!');
+        } else {
+            console.log('geen dubbel');
+        }
+    }*/
+
+    for (var i = 0; i < tbody.rows.length; i++) {
+        let item = tbody.rows[i].cells[0].innerHTML;
+        console.log(item);
+    }
+
+    //VOEG RIJ TOE
     const tr = tbody.insertRow();
     //groente
     const gekozenGroenteTd = tr.insertCell();
-    gekozenGroenteTd.innerText = keuzeInput.split(" ")[0]; 
+    gekozenGroenteTd.setAttribute('id', 'winkelmandGroente');
+    gekozenGroenteTd.innerText = keuzeInput.substring( 0, keuzeInput.indexOf("(")); 
 
     //aantal
     const gekozenAantalTd = tr.insertCell();
@@ -78,15 +98,19 @@ function voegToeAanMandje(keuzeInput, aantalInput) {
     verwijderTd.innerHTML = "<img id='vuilbak' src='./vuilbak.png' alt='verwijder'/>";
     verwijderTd.addEventListener('click', () => {
         tr.remove();
-        //updateTotaalprijs();
+        updateTotaalprijs(tbody);
     })
+    
+    updateTotaalprijs(tbody);
 
 }
 
-/*
 
-function updateTotaalprijs(){
 
+function updateTotaalprijs(tbody){
+    let somTotaal = 0;
+    for (var i = 0; i < tbody.rows.length; i++) {
+        somTotaal = somTotaal + parseFloat(tbody.rows[i].cells[3].innerHTML);
+      }
+    document.getElementById("totaalPrijs").innerHTML = somTotaal.toFixed(2);
 }
-
-*/
