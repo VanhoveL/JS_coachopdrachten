@@ -58,10 +58,11 @@ function toeTeVoegenItem(keuzeInput, aantalInput) {
 
     for(var row of tbody.rows) {
         console.log(tbody.rows);
-        let groenteNaam = row.getElementById("winkelmandGroente").innerHTML;
+        let groenteNaam = row.querySelector("#winkelmandGroente").innerHTML;
         console.log(groenteNaam);
         if (groenteNaam == keuzeInput.substring(0, keuzeInput.indexOf("("))) {
             console.log("dubbel"); 
+            //this.row.innerHTML += aantalInput
             //niet opnieuw aan tabel toevoegen, maar het bestaande antal verhogen met het nieuw gekozen aantal
         } else {
             console.log("niet dubbel");
