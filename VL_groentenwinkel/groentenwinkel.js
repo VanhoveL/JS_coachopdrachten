@@ -54,19 +54,19 @@ function toeTeVoegenItem(keuzeInput, aantalInput) {
     
     
     //CHECK DUBBELS
-    /*
-    for (var i = 0; i < (tbody.rows.length); i++) {
-        let winkelmandGroente = document.getElementById("winkelmandGroente").innerHTML;
-        if (winkelmandGroente == keuzeInput.split(" ")[0]) {
-            console.log('dubbel!');
-        } else {
-            console.log('geen dubbel');
-        }
-    }*/
 
-    for (var i = 0; i < tbody.rows.length; i++) {
-        let item = tbody.rows[i].cells[0].innerHTML;
-        console.log(item);
+
+    for(var row of tbody.rows) {
+        console.log(tbody.rows);
+        let groenteNaam = row.getElementById("winkelmandGroente").innerHTML;
+        console.log(groenteNaam);
+        if (groenteNaam == keuzeInput.substring(0, keuzeInput.indexOf("("))) {
+            console.log("dubbel"); 
+            //niet opnieuw aan tabel toevoegen, maar het bestaande antal verhogen met het nieuw gekozen aantal
+        } else {
+            console.log("niet dubbel");
+            //nieuwe rij in tabel maken met de gekozen gegevens (zie hieronder)
+        }
     }
 
     //VOEG RIJ TOE
@@ -114,3 +114,15 @@ function updateTotaalprijs(tbody){
       }
     document.getElementById("totaalPrijs").innerHTML = somTotaal.toFixed(2);
 }
+
+
+/*
+    for (var i = 0; i < (tbody.rows.length); i++) {
+        let winkelmandGroente = row.querySelectorAll("winkelmandGroente").innerHTML;
+        if (winkelmandGroente == keuzeInput.substring( 0, keuzeInput.indexOf("("))) {
+            console.log('dubbel!');
+        } else {
+            console.log('geen dubbel');
+        }
+    }
+*/
