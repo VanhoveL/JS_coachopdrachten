@@ -40,10 +40,16 @@ function valideerInput(groenten){
             let aantalInput = document.getElementById("aantal").value;
             toeTeVoegenItem(keuzeInput, aantalInput);
         }
+        resetInput();
     }
 
 }
 
+function resetInput(){
+    document.getElementById("aantal").value="";
+    document.getElementById("aantal").focus();
+    document.getElementById("keuze").value="";
+}
 
 
 function toeTeVoegenItem(keuzeInput, aantalInput) {
@@ -53,8 +59,8 @@ function toeTeVoegenItem(keuzeInput, aantalInput) {
         let groenteNaam = row.querySelector("#winkelmandGroente").innerHTML;
         if (groenteNaam == keuzeInput.substring(0, keuzeInput.indexOf("("))) {
             rijGevonden = true;
-            let nieuwAantal = parseInt(row.querySelector("#aantal").innerHTML) + parseInt(aantalInput);
-            row.querySelector("#aantal").innerHTML = nieuwAantal;
+            let nieuwAantal = parseInt(row.querySelector("#gekozenAantal").innerHTML) + parseInt(aantalInput);
+            row.querySelector("#gekozenAantal").innerHTML = nieuwAantal;
             let prijs = row.querySelector("#prijs").innerHTML;
             row.querySelector("#teBetalen").innerHTML = (nieuwAantal*prijs).toFixed(2);
         }
@@ -77,7 +83,7 @@ function voegrijtoe(keuzeInput, aantalInput) {
 
     //aantal
     const gekozenAantalTd = tr.insertCell();
-    gekozenAantalTd.setAttribute('id', 'aantal');
+    gekozenAantalTd.setAttribute('id', 'gekozenAantal');
     gekozenAantalTd.innerText = aantalInput;
 
     //prijs
