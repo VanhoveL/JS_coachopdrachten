@@ -13,15 +13,44 @@
   <img src="banner.jpg" id="banner" alt="banner">
   <h1>Bestelling</h1>
   <div id="nietGevonden" hidden class="fout">Niet gevonden.</div>
+
   <label>Groente:
-    <select id="keuze">
+    <select id="keuze" required autofocus>
       <option value="">--- maak uw keuze ---</option>
     </select>
   </label>
+  <div id="keuzeFout" hidden class="fout">Foutmelding: selecteer een groente.</div>
+
   <label>Aantal:
-    <input id="aantal">
+    <input id="aantal" required type="number" min="1" >
   </label>
+  <div id="aantalFout" hidden class="fout">Foutmelding: kies een getal groter dan nul.</div>
+
   <button id="toevoegen">Toevoegen aan mandje</button>
+  <div id="toegevoegd" hidden> Toegevoegd aan mandje.</div>
+
+
+  <table>
+    <thead>
+      <tr>
+        <th>Groente</th>
+        <th>Aantal</th>
+        <th>Prijs</th>
+        <th>Te Betalen</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id='tbody'>
+    </tbody>
+    <tfoot id='tfooter'>
+      <th>Totaal</th>
+      <th></th>
+      <th></th>
+      <th>XXX</th>
+    </tfoot>
+  </table>
+
+
 </body>
 
 </html>
